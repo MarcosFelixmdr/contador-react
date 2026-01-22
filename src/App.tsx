@@ -1,19 +1,24 @@
-import { useState } from "react";
-import "./App.css";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import ListaUsuarios from "./components/ListaUsuarios";
 
 function App() {
-  const [contador, setContador] = useState<number>(0);
-
   return (
-    <div className="container">
-      <h1>Bem-vindo ao meu projeto React com TypeScript</h1>
+    <BrowserRouter>
+      <nav style={{ marginBottom: "20px" }}>
+        <Link to="/" style={{ marginRight: "10px" }}>
+          Home
+        </Link>
+        <Link to="/usuarios">
+          Usuários
+        </Link>
+      </nav>
 
-      <p>Contador: {contador}</p>
-
-      <button onClick={() => setContador(contador + 1)}>
-        Aumentar
-      </button>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/usuarios" element={<ListaUsuarios />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
